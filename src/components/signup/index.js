@@ -20,6 +20,7 @@ const SubDiv = styled.div`
 `;
 
 const AlertSpan = styled.span`
+	padding: 0;
 	visibility: ${(props) => props.visibility || 'hidden'};
 	color: red;
 `;
@@ -35,34 +36,49 @@ export default function SignupIndex() {
 		snum: '',
 		phone: '',
 	});
-
+	const signup = (e) => {
+		if (Object.values(check).includes('') || check.values.includes('visible')) {
+			e.preventDefault();
+			alert('회원가입 정보를 확인해주세요.');
+		} else {
+			return true;
+		}
+	};
 	return (
 		<>
 			<TopBanner signup='active'></TopBanner>
 			<MainDiv>
 				<SubDiv>
-					<h3>Sign Up</h3>
-					<SignupID changeID={setID} visID={setCheck}></SignupID>
-					{console.log(id, pw, phone)}
-					<AlertSpan visibility={check.id}>id를 잘못 입력하셨습니다.</AlertSpan>
-					<SignupPW changePW={setPW} visPW={setCheck}></SignupPW>
-					<AlertSpan visibility={check.pw}>pw를 잘못 입력하셨습니다.</AlertSpan>
-					<SignupPWchk pw={pw} visPWchk={setCheck}></SignupPWchk>
-					<AlertSpan visibility={check.pwchk}>
-						비밀번호가 일치하지 않습니다.
-					</AlertSpan>
-					<SignupSnum changeSnum={setSnum} visSnum={setCheck}></SignupSnum>
-					<AlertSpan visibility={check.snum}>
-						학번을 잘못입력하셨습니다.
-					</AlertSpan>
-					<SignupMajor snum={snum}></SignupMajor>
-					<br></br>
-					<SignupPhone changePhone={setPhone} visPhone={setCheck}></SignupPhone>
-					<AlertSpan visibility={check.phone}>
-						번호를 잘못입력하셨습니다.
-					</AlertSpan>
-					<br></br>
-					<SignupBtn check={check}></SignupBtn>
+					<form action='/' onSubmit={signup}>
+						<h3>Sign Up</h3>
+						<SignupID changeID={setID} visID={setCheck}></SignupID>
+						<AlertSpan visibility={check.id}>
+							id를 잘못 입력하셨습니다.
+						</AlertSpan>
+						<SignupPW changePW={setPW} visPW={setCheck}></SignupPW>
+						<AlertSpan visibility={check.pw}>
+							pw를 잘못 입력하셨습니다.
+						</AlertSpan>
+						<SignupPWchk pw={pw} visPWchk={setCheck}></SignupPWchk>
+						<AlertSpan visibility={check.pwchk}>
+							비밀번호가 일치하지 않습니다.
+						</AlertSpan>
+						<SignupSnum changeSnum={setSnum} visSnum={setCheck}></SignupSnum>
+						<AlertSpan visibility={check.snum}>
+							학번을 잘못입력하셨습니다.
+						</AlertSpan>
+						<SignupMajor snum={snum} check={check}></SignupMajor>
+						<br></br>
+						<SignupPhone
+							changePhone={setPhone}
+							visPhone={setCheck}
+						></SignupPhone>
+						<AlertSpan visibility={check.phone}>
+							번호를 잘못입력하셨습니다.
+						</AlertSpan>
+						<br></br>
+						<SignupBtn check={check}></SignupBtn>
+					</form>
 				</SubDiv>
 			</MainDiv>
 		</>

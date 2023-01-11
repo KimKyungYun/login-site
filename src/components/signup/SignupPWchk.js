@@ -10,7 +10,7 @@ export default function SignupPWchk({ pw, visPWchk }) {
 		<InputGroup className='mb-3'>
 			<InputGroup.Text id='basic-addon1'>PW-check</InputGroup.Text>
 			<Form.Control
-				type='password-check'
+				type='password'
 				placeholder='Password-check'
 				aria-label='Password-check'
 				aria-describedby='basic-addon1'
