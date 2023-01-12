@@ -31,14 +31,14 @@ export default function LoginIndex() {
 		} else if (pw == '') {
 			alert('비밀번호를 입력해주세요.');
 			e.preventDefault();
+		} else if (localStorage.getItem(id) == null) {
+			e.preventDefault();
+			alert('아이디가 존재하지 않습니다.');
 		} else if (localStorage.getItem(id) != pw) {
 			e.preventDefault();
 			if (sessionStorage.getItem(id) == null) sessionStorage.setItem(id, 0);
 			sessionStorage.setItem(id, parseInt(sessionStorage.getItem(id)) + 1);
 			alert('비밀번호가 틀렸습니다.');
-		} else if (localStorage.getItem(id) == null) {
-			e.preventDefault();
-			alert('아이디가 존재하지 않습니다.');
 		} else return true;
 	};
 	return (

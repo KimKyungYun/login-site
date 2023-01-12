@@ -8,7 +8,6 @@ import SignupPhone from './SignupPhone';
 import SignupSnum from './SignupSnum';
 import SignupBtn from './SignupBtn';
 import SignupPWchk from './SignupPWchk';
-import { hasPointerEvents } from '@testing-library/user-event/dist/utils';
 
 const MainDiv = styled.div`
 	padding: 5%;
@@ -38,10 +37,14 @@ export default function SignupIndex() {
 		phone: '',
 	});
 	const signup = (e) => {
-		if (Object.values(check).includes('') || check.values.includes('visible')) {
+		if (
+			Object.values(check).includes('') ||
+			Object.values(check).includes('visible')
+		) {
 			e.preventDefault();
 			alert('회원가입 정보를 확인해주세요.');
 		} else {
+			alert('회원가입완료');
 			localStorage.setItem(id, pw);
 			return true;
 		}
@@ -51,7 +54,7 @@ export default function SignupIndex() {
 			<TopBanner signup='active'></TopBanner>
 			<MainDiv>
 				<SubDiv>
-					<form action='/' onSubmit={signup}>
+					<form action='/signup' onSubmit={signup}>
 						<h3>Sign Up</h3>
 						<SignupID changeID={setID} visID={setCheck}></SignupID>
 						<AlertSpan visibility={check.id}>
@@ -79,7 +82,7 @@ export default function SignupIndex() {
 							번호를 잘못입력하셨습니다.
 						</AlertSpan>
 						<br></br>
-						<SignupBtn check={check}></SignupBtn>
+						<SignupBtn></SignupBtn>
 					</form>
 				</SubDiv>
 			</MainDiv>
