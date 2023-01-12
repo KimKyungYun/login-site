@@ -42,10 +42,7 @@ export default function SignupIndex() {
 			e.preventDefault();
 			alert('회원가입 정보를 확인해주세요.');
 		} else {
-			localStorage.setItem(
-				id,
-				JSON.stringify({ id: id, pw: pw, snum: snum, phone: phone })
-			);
+			localStorage.setItem(id, pw);
 			return true;
 		}
 	};

@@ -25,22 +25,21 @@ export default function LoginIndex() {
 		setPW(password);
 	};
 	const check = (e) => {
-		if (sessionStorage.getItem(id) == '5')
-			if (id == '') {
-				alert('아이디를 입력해주세요.');
-				e.preventDefault();
-			} else if (pw == '') {
-				alert('비밀번호를 입력해주세요.');
-				e.preventDefault();
-			} else if (localStorage.getItem(id).pw != pw) {
-				e.preventDefault();
-				const count = parseInt(localStorage.getItem(id)) + 1;
-				sessionStorage.setItem(id, count);
-				alert('비밀번호가 틀렸습니다.');
-			} else if (localStorage.getItem(id) == undefined) {
-				e.preventDefault();
-				alert('아이디가 존재하지 않습니다.');
-			} else return true;
+		if (id == '') {
+			alert('아이디를 입력해주세요.');
+			e.preventDefault();
+		} else if (pw == '') {
+			alert('비밀번호를 입력해주세요.');
+			e.preventDefault();
+		} else if (localStorage.getItem(id) != pw) {
+			e.preventDefault();
+			if (sessionStorage.getItem(id) == null) sessionStorage.setItem(id, 0);
+			sessionStorage.setItem(id, parseInt(sessionStorage.getItem(id)) + 1);
+			alert('비밀번호가 틀렸습니다.');
+		} else if (localStorage.getItem(id) == null) {
+			e.preventDefault();
+			alert('아이디가 존재하지 않습니다.');
+		} else return true;
 	};
 	return (
 		<>
@@ -50,7 +49,7 @@ export default function LoginIndex() {
 					<LoginID setID={inputID}></LoginID>
 					<LoginPW setPW={inputPW}></LoginPW>
 					<br></br>
-					<LoginBtn id={id} pw={pw}></LoginBtn>
+					<LoginBtn></LoginBtn>
 				</form>
 			</LoginDiv>
 		</>
