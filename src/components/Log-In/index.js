@@ -38,8 +38,11 @@ export default function LoginIndex() {
 			e.preventDefault();
 			if (sessionStorage.getItem(id) == null) sessionStorage.setItem(id, 0);
 			sessionStorage.setItem(id, parseInt(sessionStorage.getItem(id)) + 1);
-			alert('비밀번호가 틀렸습니다.');
-		} else return true;
+			alert('비밀번호가 ' + sessionStorage.getItem(id) + '/5 번 틀렸습니다.');
+		} else {
+			alert('로그인성공');
+			return true;
+		}
 	};
 	return (
 		<>
